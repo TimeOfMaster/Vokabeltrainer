@@ -4,7 +4,7 @@ public class VokabelTrainer {
     List<VocCard> ready = new List<>();
 
     public VokabelTrainer() {
-
+        preset();
     }
 
     public void preset() {
@@ -16,11 +16,8 @@ public class VokabelTrainer {
     public void learn() {
 
     }
-    public void add() {  //Der user fügt selber Vokabeln hinzu, die er lernen möchte
-        String userImput1 = "";
-        String userImput2 = "";
-        String userImput3 = "";
-        unknown.append(new VocCard(userImput1, userImput2, userImput3));
+    public void add(String resTopic, String resQuestionWord, String resTranslation) {  //Der user fügt selber Vokabeln hinzu, die er lernen möchte
+        unknown.append(new VocCard(resTopic, resQuestionWord, resTranslation));
     }
 
     public void move(VocCard recCard) {
