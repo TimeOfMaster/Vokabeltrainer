@@ -1,1 +1,1 @@
-# Vokabeltrainer-
+# Vokabeltrainer
