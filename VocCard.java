@@ -27,7 +27,7 @@ public class VocCard {
         return translation;
     }
 
-    public int getCounter() {
+    public int getCounter(){
         return counter;
     }
 
@@ -43,7 +43,7 @@ public class VocCard {
         this.translation = translation;
     }
 
-    public void setCounter(int counter) {
+    public void setCounter(int counter){
         this.counter = counter;
     }
 }
