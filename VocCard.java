@@ -15,6 +15,13 @@ public class VocCard {
         counter = 0;
     }
 
+    public VocCard (String resTopic, String resQuestion, String resTranslation, int resCounter) {
+        topic = resTopic;
+        questionWord = resQuestionWord;
+        translation = resTranslation;
+        counter = resCounter;
+    }
+
     public String getTopic() {
         return topic;
     }

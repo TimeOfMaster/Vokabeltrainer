@@ -34,8 +34,20 @@ public class VokabelTrainer {
                 } else if (counter >= 1) {
                     counter --;
                 }
+                this.unknown.getContent().setCounter(counter);
+
                 this.unknown.next();
             }
+            
+            this.unknown.toFirst();
+            while (this.unknown.hasAccess()) {
+                if (this.unknown.getContent.getCounter() > 0) {
+                    moveUnknown();
+                } else {
+                    this.unknown.next();
+                }
+            }
+
         } else if(!this.known.isEmpty()) {
             this.known.toFirst();
 
@@ -50,8 +62,20 @@ public class VokabelTrainer {
                 } else if (counter >= 1) {
                     counter --;
                 }
+                this.known.getContent().setCounter(counter);
+
                 this.known.next();
             }
+            
+            this.known.toFirst();
+            while (this.known.hasAccess()) {
+                if (this.known.getContent.getCounter() > 3) {
+                    moveKnown();
+                } else {
+                    this.known.next();
+                }
+            }
+
         } else if(!this.perfect.isEmpty()) {
             this.perfect.toFirst();
 
@@ -66,6 +90,8 @@ public class VokabelTrainer {
                 } else if (counter >= 1) {
                     counter --;
                 }
+                this.perfect.getContent().setCounter(counter);
+
                 this.perfect.next();
             }
         }
@@ -75,7 +101,13 @@ public class VokabelTrainer {
         this.unknown.append(new VocCard(resTopic, resQuestionWord, resTranslation));
     }
 
-    public void move() {
+    public void moveUnknown() {
+        this.known.append(new VocCard(this.unknown.getContent().getTopic(), this.unknown.getContent().getQuestionWord(), this.unknown.getContent().getTranslation(), this.unknown.getContent().getCounter()));
+        this.unknown.remove();
+    }
 
+    public void moveKnown() {
+        this.unknown.append(new VocCard(this.perfect.getContent().getTopic(), this.perfect.getContent().getQuestionWord(), this.perfect.getContent().getTranslation(), this.perfect.getContent().getCounter()));
+        this.perfect.remove();
     }
 }
