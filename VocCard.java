@@ -2,6 +2,7 @@ public class VocCard {
     private String topic;
     private String questionWord;
     private String translation;
+    private int counter;
 
     public VocCard() {
 
@@ -11,6 +12,7 @@ public class VocCard {
         topic = resTopic;
         questionWord = resQuestionWord;
         translation = resTranslation;
+        counter = 0;
     }
 
     public String getTopic() {
@@ -25,6 +27,10 @@ public class VocCard {
         return translation;
     }
 
+    public int getCounter() {
+        return counter;
+    }
+
     public void setTopic(String topic) {
         this.topic = topic;
     }
@@ -35,5 +41,9 @@ public class VocCard {
 
     public void setTranslation(String translation) {
         this.translation = translation;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 }
