@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class VokabelTrainer {
     List<VocCard> unknown;
     List<VocCard> known;
@@ -21,11 +19,11 @@ public class VokabelTrainer {
 
     public void learnVoc() {
         String input = "";
-        
+
         if(!this.unknown.isEmpty()) {
             this.unknown.toFirst();
 
-            while (!this.unknown.hasAccess()) {
+            while (this.unknown.hasAccess()) {
                 String topic = this.unknown.getContent().getTopic();
                 String questionWord = this.unknown.getContent().getQuestionWord();
                 String translation = this.unknown.getContent().getTranslation();
@@ -41,7 +39,7 @@ public class VokabelTrainer {
         } else if(!this.known.isEmpty()) {
             this.known.toFirst();
 
-            while (!this.known.hasAccess()) {
+            while (this.known.hasAccess()) {
                 String topic = this.known.getContent().getTopic();
                 String questionWord = this.known.getContent().getQuestionWord();
                 String translation = this.known.getContent().getTranslation();
@@ -57,7 +55,7 @@ public class VokabelTrainer {
         } else if(!this.perfect.isEmpty()) {
             this.perfect.toFirst();
 
-            while (!this.perfect.hasAccess()) {
+            while (this.perfect.hasAccess()) {
                 String topic = this.perfect.getContent().getTopic();
                 String questionWord = this.perfect.getContent().getQuestionWord();
                 String translation = this.perfect.getContent().getTranslation();
@@ -72,7 +70,6 @@ public class VokabelTrainer {
             }
         }
     }
-
 
     public void add(String resTopic, String resQuestionWord, String resTranslation) {  // add VocCard to list unknown
         this.unknown.append(new VocCard(resTopic, resQuestionWord, resTranslation));
