@@ -1,50 +1,84 @@
 import java.util.Random;
+
 public class VokabelTrainer {
-    List<VocCard> unknown = new List<>(); //Liste der Vokabeln die neu hinzugefügt wurden
-    List<VocCard> know = new List<>(); //Liste der Vokabeln die einmal richtig waren
-    List<VocCard> ready = new List<>(); //Liste der Vokabeln die zweimal richtig waren
+    List<VocCard> unknown;
+    List<VocCard> known;
+    List<VocCard> perfect;
 
     public VokabelTrainer() {
+        this.unknown = new List<>();
+        this.known = new List<>();
+        this.perfect = new List<>();
+
         preset();
     }
 
     public void preset() {
-        unknown.append(new VocCard("x", "y", "z")); //fügt neue Vokabeln hinzu
-        unknown.append(new VocCard("x", "yy", "zz"));
-        unknown.append(new VocCard("x", "yyy", "zzz"));
+        this.unknown.append(new VocCard("x", "y", "z"));
+        this.unknown.append(new VocCard("x", "yy", "zz"));
+        this.unknown.append(new VocCard("x", "yyy", "zzz"));
     }
 
     public void learnVoc() {
-       if(!unknown.isEmpty())
-           {
-               while (!unknown.isEmpty()) {
-                   String topic = "";
-                   String questionWord = "";
-                   String translation = "";
-                   int counter = 0;
-                   String input = "";
+        String input = "";
+        
+        if(!this.unknown.isEmpty()) {
+            this.unknown.toFirst();
 
-                   if (input.equals(translation)) { //man kriegt ein questionword, man schreibt ein input, input wird überprüft ob es = translation ist
-                       counter++;
-                   } else {
-                       if (counter >= 1) {
-                           counter--;
-                       }
-                   }
-               }
-           }
+            while (!this.unknown.hasAccess()) {
+                String topic = this.unknown.getContent().getTopic();
+                String questionWord = this.unknown.getContent().getQuestionWord();
+                String translation = this.unknown.getContent().getTranslation();
+                int counter = this.unknown.getContent().getCounter();
+
+                if (input.equals(translation)) { // ueberpruefung des input 
+                    counter ++;
+                } else if (counter >= 1) {
+                    counter --;
+                }
+                this.unknown.next();
+            }
+        } else if(!this.known.isEmpty()) {
+            this.known.toFirst();
+
+            while (!this.known.hasAccess()) {
+                String topic = this.known.getContent().getTopic();
+                String questionWord = this.known.getContent().getQuestionWord();
+                String translation = this.known.getContent().getTranslation();
+                int counter = this.known.getContent().getCounter();
+
+                if (input.equals(translation)) { // ueberpruefung des input 
+                    counter ++;
+                } else if (counter >= 1) {
+                    counter --;
+                }
+                this.known.next();
+            }
+        } else if(!this.perfect.isEmpty()) {
+            this.perfect.toFirst();
+
+            while (!this.perfect.hasAccess()) {
+                String topic = this.perfect.getContent().getTopic();
+                String questionWord = this.perfect.getContent().getQuestionWord();
+                String translation = this.perfect.getContent().getTranslation();
+                int counter = this.perfect.getContent().getCounter();
+
+                if (input.equals(translation)) { // ueberpruefung des input 
+                    counter ++;
+                } else if (counter >= 1) {
+                    counter --;
+                }
+                this.perfect.next();
+            }
+        }
     }
 
 
-    public void add(String resTopic, String resQuestionWord, String resTranslation) {  //Der user fügt selber Vokabeln hinzu, die er lernen möchte
-        unknown.append(new VocCard(resTopic, resQuestionWord, resTranslation));
-    }
-    public void findOutLength(){
-
+    public void add(String resTopic, String resQuestionWord, String resTranslation) {  // add VocCard to list unknown
+        this.unknown.append(new VocCard(resTopic, resQuestionWord, resTranslation));
     }
 
-    public void move(VocCard recCard) {
+    public void move() {
 
     }
 }
-
